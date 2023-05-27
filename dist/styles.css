@@ -227,35 +227,28 @@ a {
   color: #5c6a79;
   font-size: 12px;
   margin-bottom: 23px;
+  cursor: pointer;
 }
 
-.list_item a {
-  color: #5c6a79;
-}
-
-.list_item_active {
+.list_item.active {
   font-weight: 700;
   font-size: 16px;
   line-height: 19.5px;
   color: #1c2a39;
   position: relative;
-  /* list-style: disc; */
+  cursor: default;
 }
 
-.list_item_active a ::marker {
+.list_item.active::marker {
   color: #756ad3;
 }
 
-.list_item_active ::before {
+.list_item.active::before {
   color: #756AD3;
   padding-right: 20px;
   content: "●";
   position: absolute;
   left: -24px;
-}
-
-.list_item_active a {
-  color: #1c2a39;
 }
 
 .books {
@@ -269,17 +262,11 @@ a {
   position: relative;
   z-index: 2;
   margin-left: 200px;
-  padding-top: 24px;
 }
 
 .card {
   display: flex;
-  /* justify-content: center; */
-  flex-direction: row;
   width: 50%;
-  /* width: 424px; */
-
-  /* padding-right: 20px; */
   margin-top: 60px;
 }
 
@@ -288,9 +275,12 @@ a {
 }
 
 .book-cover {
-  display: block;
-  max-width: 100%;
-  height: auto;
+  flex: 0 0 212px;
+  height: 320px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 20px 30px rgba(53, 49, 84, 0.2);
 }
 
 .book-author {
@@ -319,9 +309,9 @@ a {
   color: #5c6a79;
   font-family: "Open Sans";
   font-size: 10px;
-  font-weight: 400px;
+  font-weight: 400;
   text-transform: capitalize;
-  margin: 10px auto;
+  margin: 10px 0;
 }
 
 .book-price {

@@ -62,120 +62,30 @@
     <section class="container">
       <div class="books">
         <aside class="aside">
-          <ul class="list">
-            <li class="list_item list_item_active">
-              <a href="#">Architecture</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Art & Fashion</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Biography</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Business</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Crafts & Hobbies</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Drama</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Fiction</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Food & Drink</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Health & Wellbeing</a>
-            </li>
-            <li class="list_item">
-              <a href="#">History & Politics</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Humor</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Poetry</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Psychology</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Science</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Technology</a>
-            </li>
-            <li class="list_item">
-              <a href="#">Travel & Maps</a>
-            </li>
-          </ul>
+          <ul id="category-list" class="list"></ul>
         </aside>
-        <div class="book-container">
-          <div class="card">
-            <div class="book-cover">
-              <img src="img/cover.jpg" />
-            </div>
-            <div class="book">
-              <p class="book-author">Kevin Kwan</p>
-              <p class="book-name">Crazy rich asians</p>
-              <div class="book-rate">
-                <span class="book-rating">1</span>
-                <span class="book-counter-rating">1</span>
-              </div>
-              <p class="book-description">
-                the outrageously funny debut novel about three super-rich,
-                pedigreed Chinese families and the gossip...
-              </p>
-              <p class="book-price">$4.99</p>
-              <button class="button">buy now</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="book-cover">
-              <img src="img/cover2.jpg" />
-            </div>
-            <div class="book">
-              <p class="book-author">Kevin Kwan</p>
-              <p class="book-name">Crazy rich asians</p>
-              <div class="book-rate">
-                <span class="book-rating">1</span>
-                <span class="book-counter-rating">1</span>
-              </div>
-              <p class="book-description">
-                the outrageously funny debut novel about three super-rich,
-                pedigreed Chinese families and the gossip...
-              </p>
-              <p class="book-price">$4.99</p>
-              <button class="button">buy now</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="book-cover">
-              <img src="img/cover3.jpg" />
-            </div>
-            <div class="book">
-              <p class="book-author">Kevin Kwan</p>
-              <p class="book-name">Crazy rich asians</p>
-              <div class="book-rate">
-                <span class="book-rating">1</span>
-                <span class="book-counter-rating">1</span>
-              </div>
-              <p class="book-description">
-                the outrageously funny debut novel about three super-rich,
-                pedigreed Chinese families and the gossip...
-              </p>
-              <p class="book-price">$4.99</p>
-              <button class="button">buy now</button>
-            </div>
-          </div>
-        </div>
+        <div id="item-container" class="book-container"></div>
       </div>
     </section>
+
+    <template id="card-item">
+      <div class="card">
+        <div class="book-cover" style="background-image: url('${image}')"></div>
+        <div class="book">
+          <p class="book-author">${authors}</p>
+          <p class="book-name">${title}</p>
+          <div class="book-rate">
+            <span class="book-rating">1</span>
+            <span class="book-counter-rating">1</span>
+          </div>
+          <p class="book-description">
+            ${subtitle}
+          </p>
+          <p class="book-price">$4.99</p>
+          <button class="button">buy now</button>
+        </div>
+      </div>
+    </template>
 
     <script src="main.js"></script>
   </body>
