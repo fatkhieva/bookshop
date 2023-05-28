@@ -12,7 +12,7 @@ export const getGoogleApiBooks = (subject, startIndex) => {
     langRestrict: "en",
     maxResults: "6",
     q: `subject:${subject}`,
-    startIndex: `${startIndex}`,
+    startIndex: `${startIndex * 6}`,
   }
 
   return axiosClient.get("/volumes", {params: params});

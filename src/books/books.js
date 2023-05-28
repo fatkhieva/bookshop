@@ -1,9 +1,78 @@
 import { getGoogleApiBooks } from "../http/axios-client";
+import { addBook } from "../cart/cart";
+
+export function interpolate(str, params) {
+  const names = Object.keys(params);
+  const vals = Object.values(params);
+  const htmlString = new Function(...names, `return \`${str}\`;`)(...vals);
+  const htmlNode = new DOMParser().parseFromString(htmlString, "text/html");
+  const cardNode = htmlNode.body.firstChild
+
+  setButtonListener(cardNode, params.id);
+
+  return cardNode;
+}
+
+export function initBooks(selectedSubject) {
+  const itemContainer = document.querySelector("#item-container");
+  const cardItem = document.querySelector("#card-item");
+  const loadMoreBtn = document.querySelector("#load-more-btn");
+
+  let currentPage = 0;
+
+  const getBooks = async () => {
+    const response = await getGoogleApiBooks(selectedSubject, currentPage);
+
+    if (
+      response.data &&
+      response.data.items &&
+      Array.isArray(response.data.items)
+    ) {
+      const items = response.data.items;
+      const books = items.map((book) => extractEntity(book));
+
+      // console.log(books); // TODO: to be removed
+
+      const booksHtml = books.map((book) =>
+        interpolate(cardItem.innerHTML, book)
+      );
+
+      booksHtml.forEach((html) =>
+        itemContainer.append(html)
+      );
+
+      loadMoreBtn.style.removeProperty("display");
+    }
+  };
+
+  const loadBooks = () => {
+    currentPage = 0;
+    itemContainer.innerHTML = "";
+    loadMoreBtn.style.display = "none";
+    getBooks();
+  };
+
+  const loadMore = () => {
+    currentPage++;
+    getBooks();
+  };
+
+  loadMoreBtn.onclick = loadMore;
+
+  loadBooks();
+}
+
+export function setButtonListener(node, id) {
+  const button = node.querySelector('button.button');
+  button.onclick = () => addBook(id);
+}
 
 export function extractEntity(book) {
   const trimTitle = (title) => {
     return title.length > 90 ? title.substring(0, 90) + "..." : title;
   };
+
+  const id = book.id;
 
   const title =
     book.volumeInfo && book.volumeInfo.title
@@ -25,50 +94,8 @@ export function extractEntity(book) {
     book.volumeInfo.imageLinks &&
     book.volumeInfo.imageLinks.thumbnail
       ? book.volumeInfo.imageLinks.thumbnail
-      : "img/cover.jpg";
-  return { title, authors, subtitle, image };
-}
-
-export function interpolate(str, params) {
-  let names = Object.keys(params);
-  let vals = Object.values(params);
-  return new Function(...names, `return \`${str}\`;`)(...vals);
-}
-
-export function initBooks(selectedSubject) {
-  const itemContainer = document.querySelector("#item-container");
-  const cardItem = document.querySelector("#card-item");
-
-  let currentPage = 0;
-
-  const getBooks = async (clear = true) => {
-    if (clear) {
-      itemContainer.innerHTML = "";
-    }
-    const response = await getGoogleApiBooks(selectedSubject, currentPage);
-
-    if (
-      response.data &&
-      response.data.items &&
-      Array.isArray(response.data.items)
-    ) {
-      const items = response.data.items;
-      const books = items.map((book) => extractEntity(book));
-
-      console.log(books); // TODO: to be removed
-
-      const booksHtml = books.map((book) =>
-        interpolate(cardItem.innerHTML, book)
-      );
-
-      booksHtml.forEach((html) =>
-        itemContainer.insertAdjacentHTML("beforeend", html)
-      );
-    }
-  };
-
-
-  getBooks();
+      : "img/cover.png";
+  return { id, title, authors, subtitle, image };
 }
 
 const mock = {

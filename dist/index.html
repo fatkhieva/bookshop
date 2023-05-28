@@ -23,9 +23,16 @@
             <a class="nav_link" href="#">blog</a>
           </nav>
           <div class="header-actions">
-            <img class="img-actions" src="img/user.svg" />
-            <img class="img-actions" src="img/search.svg" />
-            <img class="img-actions" src="img/shop bag.svg" />
+            <div class="action-el">
+              <img class="img-actions" src="img/user.svg" />
+            </div>
+            <div class="action-el">
+              <img class="img-actions" src="img/search.svg" />
+            </div>
+            <div class="action-el">
+              <img class="img-actions" src="img/shop bag.svg" />
+              <div id="cart-badge" class="cart-badge">13</div>
+            </div>
           </div>
         </div>
       </div>
@@ -64,7 +71,13 @@
         <aside class="aside">
           <ul id="category-list" class="list"></ul>
         </aside>
-        <div id="item-container" class="book-container"></div>
+        <div class="book-content">
+          <div id="item-container" class="book-container"></div>
+          <div class="load-more">
+            <button id="load-more-btn" class="button">Load more</button>
+          </div>
+        </div>
+        
       </div>
     </section>
 
@@ -75,13 +88,19 @@
           <p class="book-author">${authors}</p>
           <p class="book-name">${title}</p>
           <div class="book-rate">
-            <span class="book-rating">1</span>
-            <span class="book-counter-rating">1</span>
+            <span class="book-rating">
+              <img src="img/Star.svg">
+              <img src="img/Star.svg">
+              <img src="img/Star.svg">
+              <img src="img/Star.svg">
+              <img src="img/Star.svg">
+            </span>
+            <span class="book-counter-rating">review</span>
           </div>
           <p class="book-description">
             ${subtitle}
           </p>
-          <p class="book-price">$4.99</p>
+          <p class="book-price">no price</p>
           <button class="button">buy now</button>
         </div>
       </div>

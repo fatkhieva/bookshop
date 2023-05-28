@@ -5,12 +5,12 @@
   font-family: "Montserrat", sans-serif;
 }
 
-/* *, *:before, *:after {
-  box-sizing: border-box;
-} */
-
 a {
   text-decoration: none;
+}
+
+body {
+  padding-top: 120px;
 }
 
 /* Container */
@@ -23,7 +23,13 @@ a {
 /* Header */
 
 .header {
+  position: fixed;
+  background-color: #ffffff;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 45px 0;
+  z-index: 100;
 }
 
 .header_inner {
@@ -53,10 +59,34 @@ a {
   font-weight: 900;
 }
 
+.header-actions {
+  display: flex;
+}
+
+.action-el {
+  position: relative;
+}
+
 .img-actions {
   margin-left: 40px;
 }
 
+.cart-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FF353A;
+  font-size: 9px;
+  line-height: 200%;
+}
+  
 /* Banner */
 
 .banner {
@@ -158,7 +188,7 @@ a {
   width: 149px;
   height: 204px;
   background-color: #9e98dc;
-  box-shadow: 0 20px 0 rgb(232, 227, 227);
+  box-shadow: 0px 24px 36px rgba(53, 49, 84, 0.28);
 }
 
 .second-block {
@@ -167,6 +197,7 @@ a {
   width: 137px;
   height: 273px;
   background-color: #ff8fe6;
+  box-shadow: 0px 24px 36px rgba(53, 49, 84, 0.28);
 }
 
 .block-text {
@@ -253,7 +284,11 @@ a {
 
 .books {
   position: relative;
-  margin: 150px 0;
+  margin: 150px 0 50px;
+}
+
+.book-content {
+  margin-left: 200px;
 }
 
 .book-container {
@@ -261,7 +296,6 @@ a {
   flex-wrap: wrap;
   position: relative;
   z-index: 2;
-  margin-left: 200px;
 }
 
 .card {
@@ -301,7 +335,13 @@ a {
 .book-rate {
   display: inline-block;
   width: 50%;
+  width: 160px;
 }
+
+.book-counter-rating {
+  font-size: 10px;
+}
+
 
 .book-description {
   width: 176px;
@@ -331,4 +371,10 @@ a {
   font-size: 8px;
   text-transform: uppercase;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.load-more {
+  margin-top: 80px;
+  text-align: center;
 }
